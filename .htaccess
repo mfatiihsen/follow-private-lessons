@@ -1,0 +1,11 @@
+
+
+
+RewriteEngine On
+
+# 404 yönlendirmesi - EN BASİT ÇÖZÜM
+ErrorDocument 404 /404.php
+
+# Eğer klasör yapınız farklıysa:
+# ErrorDocument 404 /public_html/404.php
+# ErrorDocument 404 /your-project/404.php

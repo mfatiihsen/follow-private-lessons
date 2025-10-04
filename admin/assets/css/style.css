@@ -1,0 +1,558 @@
+/* Genel Ayarlar ve Font */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
+:root {
+  /* Renk Paleti */
+  --primary-color: #5d5dff; /* Canlı Mor/Mavi Vurgu */
+  --primary-light: #8a8aff;
+  --background-start: #e0f2f7; /* Açık Mavi Başlangıç */
+  --background-end: #f4e8f7; /* Açık Pembe Bitiş */
+  --glass-bg: rgba(255, 255, 255, 0.75); /* Yüksek Şeffaflık */
+  --sidebar-bg: rgba(255, 255, 255, 0.85);
+  --text-color: #333;
+  --light-text-color: #6c757d;
+  --border-color-light: rgba(255, 255, 255, 0.2);
+  --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.2); /* Belirgin Gölge */
+  --radius-round: 12px; /* Yumuşak Köşeler */
+  --transition-speed: 0.3s;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background: linear-gradient(
+    135deg,
+    var(--background-start) 0%,
+    var(--background-end) 100%
+  ); /* Canlı Gradyan */
+  color: var(--text-color);
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Arka Plan Dekorasyonları (Opsiyonel) */
+body::before {
+  content: "";
+  position: absolute;
+  top: 5%;
+  left: 10%;
+  width: 200px;
+  height: 200px;
+  background: var(--primary-light);
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.3;
+  z-index: -1;
+}
+
+/* Ana Yönetici Kapsayıcı */
+.admin-container {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+}
+
+/* Sidebar (Yan Menü) */
+aside#_sidebar {
+  grid-column: 1 / 2;
+  grid-row: 1 / 4;
+  background: var(--sidebar-bg);
+  padding: 20px 0;
+  box-shadow: var(--shadow-glass);
+  z-index: 50;
+  backdrop-filter: blur(10px); /* Buzlu Cam Etkisi */
+  border-right: 1px solid var(--border-color-light);
+}
+
+.sidebar-header {
+  text-align: center;
+  padding: 15px 20px 30px;
+}
+.sidebar-header .logo-text {
+  font-size: 1.5rem;
+  text-decoration: none;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.sidebar-menu ul {
+  list-style: none;
+}
+.sidebar-menu ul li a {
+  display: flex;
+  align-items: center;
+  padding: 12px 30px;
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 500;
+  margin: 5px 15px;
+  border-radius: var(--radius-round); /* Yuvarlak köşeler */
+  transition: all var(--transition-speed);
+}
+.sidebar-menu ul li a i {
+  margin-right: 15px;
+  font-size: 1rem;
+}
+.sidebar-menu ul li a:hover {
+  background: rgba(93, 93, 255, 0.1); /* Hafif vurgu */
+  color: var(--primary-color);
+}
+.sidebar-menu ul li a.active {
+  background: var(--primary-color);
+  color: white;
+  box-shadow: 0 4px 10px rgba(93, 93, 255, 0.4);
+}
+
+/* Sidebar'a Çıkış Alanı Eklenmesi ve Dikey Hizalama */
+aside#_sidebar {
+  /* ... Diğer Glassmorphism Sidebar Stilleri ... */
+
+  /* ÖNEMLİ: İçeriği dikey sıralama ve alt boşluğu ayırma */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Header ve Footer aksiyonunu uçlara it */
+}
+
+/* Menü alanının geri kalan boşluğu doldurmasını sağlar */
+.sidebar-menu {
+  flex-grow: 1;
+  overflow-y: auto; /* Menü çok uzarsa kaydırma çubuğu çıkar */
+}
+
+/* Çıkış butonu için ayrılmış alt alan */
+.sidebar-footer-action {
+  padding: 15px 15px 10px;
+  border-top: 1px solid rgba(0, 0, 0, 0.05); /* Menüden ayıran ince çizgi */
+}
+
+/* Çıkış Butonu Stili (Yüksek Kontrast Konseptine uygun) */
+.sidebar-logout-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  background-color: #dc3545; /* Kırmızı Arka Plan */
+  color: white;
+  border: none;
+  border-radius: 8px; /* Yumuşak köşe */
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.sidebar-logout-btn:hover {
+  background-color: #c82333;
+}
+
+.sidebar-logout-btn i {
+  margin-right: 10px;
+}
+
+/* SADECE NAVBAR VE İÇERİK (CONTENT) GÜNCELLEMESİ */
+
+/* Değişkenler (Kontrast ve minimalist renk paleti) */
+:root {
+  --primary-color: #00bcd4; /* Canlı Mavi-Turkuaz - Aksiyon Rengi */
+  --primary-dark: #0097a7;
+  --background-color: #f7f9fa; /* Çok Açık, Beyaza Yakın Zemin */
+  --card-bg-color: #ffffff; /* Saf Beyaz Bloklar */
+  --navbar-bg-color: #ffffff;
+  --text-color: #212529; /* Koyu Metin */
+  --light-text-color: #6c757d;
+  --border-color: #e9ecef; /* Çok ince ayırıcı çizgi */
+  --shadow-minimal: 0 1px 2px rgba(0, 0, 0, 0.04); /* Çok hafif gölge */
+  --radius-none: 0; /* Keskin köşeler */
+  --transition-speed: 0.2s;
+}
+
+/* Genel İçerik Ayarları */
+section#content {
+  grid-column: 2 / 3;
+  padding: 30px;
+  background-color: var(--background-color);
+  overflow-y: auto;
+}
+
+/* Navbar (Minimalist ve Fonksiyonel) */
+
+nav#_navbar {
+  grid-column: 2 / 3;
+  background: var(--navbar-bg-color);
+  box-shadow: var(--shadow-minimal);
+  padding: 10px 30px;
+  display: flex;
+  justify-content: flex-end; /* Sağ Hizalı */
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  backdrop-filter: none;
+  z-index: 100;
+}
+.navbar-actions {
+  display: flex;
+  align-items: center;
+}
+.navbar-actions button {
+  background: none;
+  border: none;
+  color: var(--light-text-color);
+  font-size: 1.1rem;
+  padding: 8px;
+  margin-right: 15px;
+  cursor: pointer;
+  transition: color var(--transition-speed);
+}
+.navbar-actions button:hover {
+  color: var(--primary-color);
+}
+.user-info img {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--border-color);
+}
+
+/* Ana İçerik Kart/Blok Tasarımı */
+.data-block {
+  background: var(--card-bg-color);
+  border-radius: var(--radius-none); /* Keskin köşeler */
+  padding: 25px;
+  margin-bottom: 20px;
+  box-shadow: none; /* Gölge yok */
+  border: 1px solid var(--border-color); /* Belirgin tek çizgi kenarlık */
+  transition: border-color 0.2s;
+}
+
+.data-block:hover {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(0, 188, 212, 0.2);
+}
+
+.block-header {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--light-text-color);
+  margin-bottom: 5px;
+}
+.block-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-color);
+}
+.block-subtext {
+  font-size: 0.9rem;
+  color: var(--primary-dark);
+  margin-top: 10px;
+}
+
+/* Dashboard Grid */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 sütunlu yoğun grid */
+  gap: 20px;
+}
+
+/* Büyük Alanlar İçin Tablo Stili */
+.full-width-block {
+  grid-column: 1 / -1;
+}
+
+.data-table-container {
+  padding-top: 20px;
+}
+.data-table-container table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.data-table-container th,
+.data-table-container td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+.data-table-container th {
+  font-weight: 600;
+  color: var(--light-text-color);
+  background-color: var(--background-color);
+}
+
+/* Footer (Minimalist ve Yüksek Kontrastlı) */
+footer#_footer {
+  grid-column: 2 / 3;
+  padding: 15px 30px; /* Navbar ve içeriğe uygun padding */
+  text-align: right; /* Sağ tarafa hizalı bilgi (Daha modern) */
+  font-size: 0.85rem;
+  color: var(--light-text-color); /* Hafif, soluk metin rengi */
+  background: var(--card-bg-color); /* Temiz Beyaz Arka Plan */
+  border-top: 1px solid var(--border-color); /* İnce ayırıcı çizgi */
+  box-shadow: var(--shadow-minimal); /* Çok hafif gölge */
+}
+
+/* Footer içindeki linkler/vurgular için */
+footer#_footer a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color var(--transition-speed);
+}
+
+footer#_footer a:hover {
+  color: var(--primary-dark);
+}
+
+/* ================================== */
+/* Öğretmen Listesi/Veri Tablosu Stilleri */
+/* ================================== */
+
+/* Genel Tablo Kapsayıcısı */
+.list-container {
+  background: var(--card-bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-none);
+  box-shadow: var(--shadow-minimal);
+  padding: 20px;
+}
+
+/* Filtreleme ve Arama Alanı */
+.filter-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.search-input input {
+  padding: 8px 15px 8px 40px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: var(--background-color);
+  width: 250px;
+  transition: all 0.3s;
+}
+
+.search-input input:focus {
+  border-color: var(--primary-color);
+  background-color: #fff;
+  box-shadow: 0 0 0 2px rgba(0, 188, 212, 0.15);
+  outline: none;
+}
+
+/* Yeni Öğretmen Ekle Butonu */
+.new-teacher-btn {
+  padding: 10px 18px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.new-teacher-btn:hover {
+  background-color: var(--primary-dark);
+}
+
+/* Tablo Stili */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  /* Kenarlıkları birleştir */
+  font-size: 0.9rem;
+}
+
+.data-table th,
+.data-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.data-table th {
+  font-weight: 600;
+  color: var(--light-text-color);
+  background-color: var(--background-color);
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+/* Aksiyon Sütunu Butonları */
+.action-buttons-cell button {
+  background: none;
+  border: none;
+  color: var(--light-text-color);
+  font-size: 1rem;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: color 0.2s;
+}
+
+.action-buttons-cell button:hover {
+  color: var(--primary-color);
+}
+
+.action-buttons-cell .delete-btn:hover {
+  color: #dc3545;
+  /* Silme butonu için kırmızı vurgu */
+}
+
+/* Durum/Etiket Stilleri */
+.status-active {
+  background-color: #e6ffee;
+  color: #28a745;
+  padding: 4px 8px;
+  border-radius: 3px;
+  font-weight: 500;
+}
+
+.status-passive {
+  background-color: #fff3e6;
+  color: #fd7e14;
+  padding: 4px 8px;
+  border-radius: 3px;
+  font-weight: 500;
+}
+
+/* ================================== */
+/* Öğretmen Ekleme Form Stilleri */
+/* ================================== */
+
+.form-card {
+  background: var(--card-bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-none);
+  box-shadow: var(--shadow-minimal);
+  padding: 35px;
+  max-width: 900px;
+}
+
+/* Form İçindeki Grid Düzeni (Yan Yana Alanlar) */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 sütunlu düzen */
+  gap: 25px 40px; /* Dikey ve Yatay boşluklar */
+  margin-bottom: 20px;
+}
+
+/* Tek Satırlık Alanlar */
+.form-group {
+  grid-column: span 1;
+}
+
+/* Tam Genişlikteki Alanlar (Açıklama, Adres vb.) */
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 8px;
+}
+
+.form-group input:not([type="checkbox"]),
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 10px 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: var(--background-color);
+  font-size: 1rem;
+  transition: all 0.2s;
+}
+
+/* Odaklanma Stili (Vurgu rengi) */
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--primary-color);
+  background-color: #fff;
+  box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.15);
+  outline: none;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Buton Grubu */
+.button-group {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  padding-top: 15px;
+  border-top: 1px dashed var(--border-color);
+}
+
+.button-group button {
+  padding: 12px 25px;
+  font-weight: 600;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.save-btn {
+  background-color: var(--primary-color);
+  color: white;
+}
+.save-btn:hover {
+  background-color: var(--primary-dark);
+}
+
+.cancel-btn {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+}
+.cancel-btn:hover {
+  background-color: #e9ecef;
+}
+
+/* Gerekliyse Alan Başlıkları */
+.section-heading {
+  grid-column: 1 / -1;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+  padding-bottom: 10px;
+  margin-top: 20px;
+  border-bottom: 2px solid var(--primary-color);
+}
+
+
+/* // hata mesajları için stil */
+
+alert {
+  padding: 15px 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.alert-error {
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.alert-success {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}

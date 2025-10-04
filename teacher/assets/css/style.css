@@ -1,0 +1,316 @@
+/* Genel Değişkenler (Admin Paneli ile uyumlu) */
+:root {
+  --primary-color: #2ecc71; /* Canlı Yeşil/Zümrüt - Öğretmen Vurgusu */
+  --primary-dark: #27ae60;
+  --background-color: #f7f9fa;
+  --card-bg-color: #ffffff;
+  --navbar-bg-color: #ffffff;
+  --text-color: #2c3e50;
+  --light-text-color: #7f8c8d;
+  --border-color: #e9ecef;
+  --shadow-minimal: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --radius-none: 0;
+  --transition-speed: 0.2s;
+}
+
+/* Ana Kapsayıcı ve Grid Sistemi (Admin ile aynı) */
+.teacher-container {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+  font-family: "Inter", sans-serif;
+  background-color: var(--background-color);
+}
+
+/* Navbar (Admin'den alınan minimalist stil) */
+nav#_teacher_navbar {
+  grid-column: 2 / 3;
+  background: var(--navbar-bg-color);
+  box-shadow: var(--shadow-minimal);
+  padding: 10px 30px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  z-index: 100;
+}
+.teacher-info-name {
+  font-weight: 500;
+  color: var(--text-color);
+  margin-right: 15px;
+}
+.teacher-info-img {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--primary-color);
+}
+
+/* Sidebar (Kademeli Renkli Dikey Vurgu) */
+aside#_teacher_sidebar {
+  grid-column: 1 / 2;
+  grid-row: 1 / 4;
+  background: #fcfcfc;
+  padding: 0;
+  border-right: 1px solid var(--border-color);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sidebar-menu {
+  flex-grow: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.sidebar-header {
+  padding: 20px 0;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.sidebar-header .logo-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+/* Menü Kategori Başlıkları */
+.sidebar-menu h3 {
+  font-size: 0.8rem;
+  color: var(--light-text-color);
+  padding: 0 25px 0;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.sidebar-menu ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar-menu ul li a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 12px 25px;
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all var(--transition-speed);
+  border-left: 5px solid transparent; /* Vurgu çizgisi için yer */
+}
+
+/* Hover ve Aktif Stil */
+.sidebar-menu ul li a:hover {
+  background-color: rgba(46, 204, 113, 0.05); /* Çok açık yeşil arka plan */
+  color: var(--primary-dark);
+}
+.sidebar-menu ul li a.active {
+  background-color: rgba(
+    46,
+    204,
+    113,
+    0.08
+  ); /* Aktif: Hafif daha belirgin arka plan */
+  color: var(--primary-dark);
+  font-weight: 600;
+  border-left: 5px solid var(--primary-color); /* KALIN RENKLİ VURGU ÇİZGİSİ */
+}
+
+.sidebar-menu ul li a i {
+  margin-right: 15px;
+  font-size: 1rem;
+  color: var(--light-text-color);
+}
+.sidebar-menu ul li a.active i {
+  color: var(--primary-color); /* Aktif ikonu renklendir */
+}
+
+/* Çıkış Butonu (Ayrılmış ve Vurgulu) */
+.sidebar-footer-action {
+  padding: 15px; /* Yanlardan boşluk */
+  border-top: 1px solid var(--border-color);
+}
+.teacher-logout-btn {
+  /* Stil Admin Panelinden Miras Alındı */
+  width: 100%;
+  padding: 10px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.teacher-logout-btn:hover {
+  background-color: #c82333;
+}
+
+/* Çıkış Butonu (Sidebar'ın altında) */
+.sidebar-footer-action {
+  padding: 15px 15px 10px;
+  border-top: 1px solid var(--border-color);
+}
+.teacher-logout-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: rgb(224, 10, 10);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.4s ease-in-out;
+}
+.teacher-logout-btn:hover {
+  background-color: rgb(255, 0, 0);
+  color: white;
+}
+
+/* İçerik Alanı (Admin ile aynı, temiz) */
+section#content {
+  grid-column: 2 / 3;
+  padding: 30px;
+  overflow-y: auto;
+}
+
+/* Ana Sayfa (Dashboard) Stilleri */
+
+.dashboard-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* Sol (2/3) Program, Sağ (1/3) Hızlı Aksiyonlar */
+  gap: 30px;
+}
+
+/* Sol Ana Program Alanı */
+.main-program-area {
+  grid-column: 1 / 2;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 25px;
+}
+
+/* Sağ Hızlı Aksiyon Alanı */
+.quick-action-area {
+  grid-column: 2 / 3;
+  display: grid;
+  grid-template-rows: repeat(
+    2,
+    auto
+  ); /* İki büyük blok: Metrikler ve Aksiyonlar */
+  gap: 25px;
+}
+
+/* Kartlar/Bloklar (Admin Paneli ile uyumlu minimalist stil) */
+.content-block {
+  background: var(--card-bg-color);
+  border-radius: 4px; /* Keskin köşeler */
+  padding: 25px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--border-color);
+}
+
+.block-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--primary-color); /* Yeşil vurgu */
+}
+
+/* Hızlı Metrik Blokları */
+.metric-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* Sağ sütunda tek tek sıralanır */
+  gap: 15px;
+}
+.metric-item {
+  padding: 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  text-align: left;
+  background-color: var(--background-color);
+}
+.metric-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 5px;
+}
+.metric-label {
+  font-size: 0.9rem;
+  color: var(--light-text-color);
+}
+
+/* Program Kartı İçindeki Liste Stili */
+.lesson-list {
+  list-style: none;
+  padding: 0;
+}
+.lesson-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px dotted var(--border-color);
+  font-size: 0.95rem;
+}
+.lesson-list li:last-child {
+  border-bottom: none;
+}
+.lesson-time {
+  font-weight: 600;
+  color: var(--primary-dark);
+}
+.lesson-subject {
+  color: var(--text-color);
+}
+.lesson-student {
+  color: var(--light-text-color);
+  font-size: 0.85rem;
+}
+
+/* Aksiyon Butonları */
+.action-buttons button {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 10px;
+  border: none;
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.action-buttons button:hover {
+  background-color: var(--primary-dark);
+}
+
+/* FOOTER */
+
+/* Footer Stili (Admin Paneli ile uyumlu minimalist yapı) */
+footer#_footer {
+  grid-column: 2 / 3;
+  padding: 15px 30px; /* İçerik padding'i ile uyumlu */
+  font-size: 0.85rem;
+  color: var(--light-text-color); /* Hafif, soluk metin rengi */
+  background: var(--card-bg-color); /* Temiz Beyaz Arka Plan */
+  border-top: 1px solid var(--border-color); /* İnce ayırıcı çizgi */
+  box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.02); /* Çok hafif yukarı gölge */
+}
+
+/* Footer içindeki linkler/vurgular için (Opsiyonel) */
+footer#_footer a {
+  color: var(--primary-color); /* Yeşil Vurgu */
+  text-decoration: none;
+  transition: color var(--transition-speed);
+}
